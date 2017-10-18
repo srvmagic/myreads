@@ -8,8 +8,15 @@ class Book extends Component {
         book: PropTypes.object.isRequired
     }
 
-    addBook(book) {
-        BooksAPI.update(book, book.shelf)
+    updatebook(book, shelf) {
+        BooksAPI.update(book, shelf).then(book => {
+
+
+            this.setState({
+                shelf: book.shelf
+            })      
+                  
+        })
     }
 
     render() {
@@ -29,9 +36,9 @@ class Book extends Component {
                         <Shelf
                             key={this.props.book.id}
                             shelf={this.props.book.shelf}
-                            onAddBook={(bk) => {
-                                console.log("HEREEE"+bk.shelf)
-                            this.addBook(bk)
+                            onChangeShelf={(value) => {
+                            console.log("HEREEE" + value)
+                            this.updatebook(this.props.book, value)
                         }}/>
                     </div>
                     <div className="book-title">{this.props.book.title}</div>

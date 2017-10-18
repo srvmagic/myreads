@@ -8,10 +8,12 @@ class Shelf extends Component {
     }
     handleChange = (evt) => {
         console.log("VALUE"+evt.target.value)
-        const values = serializeForm(evt.target, {hash: true})
 
-        if (this.props.onAddBook) 
-            this.props.onAddBook(values)
+        if (this.props.onChangeShelf) {
+            this.props.onChangeShelf(evt.target.value)
+        }
+
+            
     }
     render() {
 
