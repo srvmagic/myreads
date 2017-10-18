@@ -20,7 +20,6 @@ class Book extends Component {
     }
 
     render() {
-        const bk = this.props.book
         return (
 
             <li>

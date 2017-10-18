@@ -8,6 +8,7 @@ class Bookshelf extends Component {
   }
 
   render() {
+  
     let bookshelftypes = [
       {
         type: 'currentlyReading',

@@ -3,35 +3,49 @@ import PropTypes from 'prop-types'
 import escapeRegExp from 'escape-string-regexp'
 import {Link} from 'react-router-dom';
 import Book from './Book'
+import * as BooksAPI from './BooksAPI'
 
 class ListBooks extends Component {
   static propTypes = {
     books: PropTypes.array.isRequired
   }
   state = {
-    query: ''
+    query: '',
+    results: []
   }
 
   updateQuery = (query) => {
+    BooksAPI
+      .search(query, 20)
+      .then(book => {
+        this.setState(state => ({
+          results: state
+            .results
+            .concat([book])
+        }))
+      })
     this.setState({
       query: query.trim()
     });
   }
 
   clearQuery = (query) => {
-    this.setState({query: ''});
+    this.setState({query: '',results:[]});
   }
 
   render() {
 
-    const {query} = this.state
-    let showingBooks = []
+    const {query, results} = this.state
+    let showingBooks = results
     if (query) {
       const match = new RegExp(escapeRegExp(query), 'i')
       showingBooks = this
         .props
         .books
         .filter((book) => match.test(book.title))
+        console.log(showingBooks)        
+    }else{
+      showingBooks = results
     }
 
     return (

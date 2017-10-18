@@ -1,19 +1,15 @@
 import React, {Component} from 'react'
 import PropTypes from 'prop-types'
-import serializeForm from 'form-serialize'
 
 class Shelf extends Component {
     static propTypes = {
         shelf: PropTypes.string.isRequired
     }
     handleChange = (evt) => {
-        console.log("VALUE"+evt.target.value)
-
+        this.forceUpdate()
         if (this.props.onChangeShelf) {
             this.props.onChangeShelf(evt.target.value)
-        }
-
-            
+        }            
     }
     render() {
 
