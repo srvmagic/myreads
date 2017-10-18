@@ -1,8 +1,9 @@
-import React from 'react';
-import { Route }  from 'react-router-dom';
+import React from 'react'
+import { Route }  from 'react-router-dom'
 import * as BooksAPI from './BooksAPI'
-//import AddBooks from './AddBooks'
+import ListBooks from './ListBooks'
 import Bookshelf from './Bookshelf'
+import  {Link} from 'react-router-dom'
 
 class App extends React.Component {
 
@@ -20,9 +21,7 @@ class App extends React.Component {
 
      /*addBook(book) {
         BooksAPI.update(book,shelf).then(book => {
-            this.setState(state => ({
-                books: state.books.concat([book])
-            })
+            this.setState({book.shelf:shelf})
 
             )
         }
@@ -30,13 +29,20 @@ class App extends React.Component {
         )
     }*/
     render() {
+        console.log('All books')    
+        console.log(this.state.books)
         return (
             <div className='app'>
             <Route exact path='/' render={() => 
                     <Bookshelf
                     books={this.state.books}/>
                 } />
+                
+                 <Route exact path='/search' render={() => 
+                    <ListBooks books={this.state.books}/>
+                } />                 
             </div>
+            
          
         );
     }

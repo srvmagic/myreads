@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
 import PropTypes from 'prop-types'
 import {Link} from 'react-router-dom';
-import Book from './Book'
+import Books from './Books'
 
 class Bookshelf extends Component {
   static propTypes = {
@@ -9,26 +9,38 @@ class Bookshelf extends Component {
   }
 
   render() {
-    let bookshelftypes = {
-        currentlyReading:'Currently Reading',
-        wantToRead:'Want To Read',
-        read:'Read',      
-    }
-
-
-
-
-  
-    return ( Object.keys(bookshelftypes).forEach((bookshelftype) => {
+    let bookshelftypes = [
+      {
+        type: 'currentlyReading',
+        title: 'Currently Reading'
+      }, {
+        type: 'wantToRead',
+        title: 'Want To Read'
+      }, {
+        type: 'read',
+        title: 'Read'
+      }
+    ]
+    return (bookshelftypes.map((bookshelftype) => {
 
       const filterbooks = this
         .props
         .books
-        .filter((currentbook) => currentbook.shelf === 'currentlyReading')
-        console.log(filterbooks)
-        console.log(bookshelftypes[bookshelftype])
+        .filter((currentbook) => currentbook.shelf === bookshelftype.type)
 
-      return (<Book selectedbooks={filterbooks} title='currentlyReading'/>)
+      return (
+        <div className="app">
+          <div className="list-books">
+            <div className="list-books-title">
+              <h1>MyReads</h1>
+            </div>
+
+            <Books selectedbooks={filterbooks} title={bookshelftype.title}/>
+            <Link to='/search' className='open-search'>Add Book</Link>
+          </div>
+        </div>
+
+      )
     }))
   }
 }

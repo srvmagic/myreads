@@ -4,24 +4,7 @@ import escapeRegExp from 'escape-string-regexp'
 import sortBy from 'sort-by'
 import  {Link} from 'react-router-dom';
 
-class AddBooks extends Component {
-    static propTypes = {
-        books: PropTypes.array.isRequired,
-    }
-    state = {
-        query: ''
-    }
-
-    updateQuery = (query) => {
-        this.setState({
-            query: query.trim()
-        });
-    }
-
-    clearQuery = (query) => {
-        this.setState({query: ''});
-    }
-
+class AddBook extends Component {
     render() {
         const {books} = this.props
         const {query} = this.state
@@ -39,4 +22,4 @@ class AddBooks extends Component {
 
 }
 
-export default AddBooks
+export default AddBook
