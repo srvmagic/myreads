@@ -2,6 +2,7 @@ import React, {Component} from 'react'
 import PropTypes from 'prop-types'
 import Shelf from './Shelf'
 import * as BooksAPI from './BooksAPI'
+import Author from './Author'
 
 class Book extends Component {
     static propTypes = {
@@ -9,14 +10,13 @@ class Book extends Component {
     }
 
     updatebook(book, shelf) {
-        BooksAPI.update(book, shelf).then(book => {
+        BooksAPI
+            .update(book, shelf)
+            .then(book => {
 
+                this.setState({shelf: book.shelf})
 
-            this.setState({
-                shelf: book.shelf
-            })      
-                  
-        })
+            })
     }
 
     render() {
@@ -37,12 +37,15 @@ class Book extends Component {
                             key={this.props.book.id}
                             shelf={this.props.book.shelf}
                             onChangeShelf={(value) => {
-                            console.log("HEREEE" + value)
                             this.updatebook(this.props.book, value)
                         }}/>
                     </div>
                     <div className="book-title">{this.props.book.title}</div>
-                    <div className="book-authors">{this.props.book.authors}</div>
+                    <div className="book-authors">{this
+                            .props
+                            .book
+                            .authors
+                            .map((author) => (<Author author={author}/>))}</div>
                 </div>
             </li>
 
