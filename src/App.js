@@ -16,12 +16,10 @@ class App extends React.Component {
             .then((books) => {
                 this.setState({books});
             })
-        console.log(this.state.books)
     }
 
     render() {
-        console.log('All books')
-        console.log(this.state.books)
+
         return (
             <div className='app'>
                 <div className="list-books">
