@@ -5,8 +5,8 @@ class Shelf extends Component {
     static propTypes = {
         shelf: PropTypes.string.isRequired
     }
+  
     handleChange = (evt) => {
-        this.forceUpdate()
         if (this.props.onChangeShelf) {
             this.props.onChangeShelf(evt.target.value)
         }            

@@ -14,9 +14,10 @@ class Book extends Component {
             .update(book, shelf)
             .then(book => {
 
-                this.setState({shelf: book.shelf})
+                this.setState({book: book})
 
             })
+            
     }
 
     render() {
@@ -32,7 +33,7 @@ class Book extends Component {
                             height: 193,
                             backgroundImage: `url(${this.props.book.imageLinks.thumbnail})`
                         }}></div>
-                        <Shelf
+                        <Shelf                            
                             key={this.props.book.id}
                             shelf={this.props.book.shelf}
                             onChangeShelf={(value) => {

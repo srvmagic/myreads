@@ -43,7 +43,6 @@ class ListBooks extends Component {
         .props
         .books
         .filter((book) => match.test(book.title))
-        console.log(showingBooks)        
     }else{
       showingBooks = results
     }
