@@ -25,7 +25,7 @@ class Books extends Component {
                                 {this
                                     .props
                                     .selectedbooks
-                                    .map((book) => (<Book key={book.id} book={book} updatebook={this.props.updatebook}/>))}
+                                    .map((book) => (<Book book={book} updatebook={this.props.updatebook}/>))}
                             </ol>
                         </div>
                     </div>

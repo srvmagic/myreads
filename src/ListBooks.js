@@ -7,26 +7,23 @@ import * as BooksAPI from './BooksAPI'
 
 class ListBooks extends Component {
   static propTypes = {
-    books: PropTypes.array.isRequired
+    updatebook: PropTypes.func.isRequired
+    
   }
   state = {
     query: '',
     results: []
   }
 
-  updateQuery = (query) => {
-    BooksAPI
-      .search(query, 20)
-      .then(book => {
-        this.setState(state => ({
-          results: state
-            .results
-            .concat([book])
-        }))
+  updateQuery = query => {
+    this.setState({ query: query.trim() })
+    let thisQuery = this.state.query
+    if (thisQuery) {
+      BooksAPI.search(thisQuery, 20).then(books => {
+        this.setState({ results: !books.error ? books : []})
       })
-    this.setState({
-      query: query.trim()
-    });
+
+    }
   }
 
   clearQuery = (query) => {
@@ -36,16 +33,7 @@ class ListBooks extends Component {
   render() {
 
     const {query, results} = this.state
-    let showingBooks = results
-    if (query) {
-      const match = new RegExp(escapeRegExp(query), 'i')
-      showingBooks = this
-        .props
-        .books
-        .filter((book) => match.test(book.title))
-    }else{
-      showingBooks = results
-    }
+
 
     return (
       <div className="search-books">
@@ -70,7 +58,7 @@ class ListBooks extends Component {
               onChange={(event) => this.updateQuery(event.target.value)}/>
 
             <ol className='books-grid'>
-              {showingBooks.map((book) => (<Book book={book}/>))}
+              {results.map((book) => (<Book book={book} updatebook={this.props.updatebook}/>))}
             </ol>
 
           </div>

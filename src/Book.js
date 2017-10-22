@@ -24,10 +24,9 @@ class Book extends Component {
                             style={{
                             width: 128,
                             height: 193,
-                            backgroundImage: `url(${this.props.book.imageLinks.thumbnail})`
+                            
                         }}></div>
                         <Shelf
-                            key={this.props.book.id}
                             shelf={this.props.book.shelf}
                             onChangeShelf={(value) => {
                             this
@@ -40,7 +39,7 @@ class Book extends Component {
                             .props
                             .book
                             .authors
-                            .map((author) => (<Author author={author}/>))}</div>
+                           }</div>
                 </div>
             </li>
 

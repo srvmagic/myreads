@@ -19,18 +19,24 @@ class App extends React.Component {
 
     }
     updatebook(book, shelf) {
-        BooksAPI
-            .update(book, shelf)
-            .then(book => {
-
-                this.setState({book: book})
-
+        if (shelf === "none") {
+            BooksAPI.update(book, shelf).then(() => {
+              book.shelf = shelf;
+              this.setState(prevState => ({
+                 books: prevState.books.filter(b => b.id !== book.id),
+              }))
             })
+          } else {
+            BooksAPI.update(book, shelf).then(() => {
+              book.shelf = shelf;
+              this.setState(prevState => ({
+                 books: prevState.books.filter(b => b.id !== book.id).concat([ book ]),
+              }))
+            })
+          }
             
     }
     render() {
-        let uuid = require('uuid4')
-        var id = uuid()
         return (
             <div className='app'>
                 <div className="list-books">
@@ -48,7 +54,7 @@ class App extends React.Component {
                     <Route
                         exact
                         path='/search'
-                        render={() => <ListBooks books={this.state.books}/>}/>
+                        render={() => <ListBooks updatebook={this.state.updatebook}/>}/>
                 </div>
 
             </div>
