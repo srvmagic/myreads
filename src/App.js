@@ -6,7 +6,7 @@ import Bookshelf from './Bookshelf'
 import {Link} from 'react-router-dom'
 
 class App extends React.Component {
-    
+
     state = {
         books: []
     }
@@ -16,12 +16,18 @@ class App extends React.Component {
             .then((books) => {
                 this.setState({books});
             })
+
+    }
+    updatebook(book, shelf) {
+        BooksAPI
+            .update(book, shelf)
+            .then(book => {
+
+                this.setState({book: book})
+
+            })
             
     }
-
-      
- 
-
     render() {
         let uuid = require('uuid4')
         var id = uuid()
@@ -35,14 +41,14 @@ class App extends React.Component {
                         render={() => <div>
                         <div className="list-books-title">
                             <h1>MyReads</h1>
-                        </div><Bookshelf key={id} books={this.state.books}/>
+                        </div><Bookshelf books={this.state.books} updatebook={this.state.updatebook}/>
                         <Link to='/search' className='open-search'>Add Book</Link>
                     </div>}/>
 
                     <Route
                         exact
                         path='/search'
-                        render={() => <ListBooks key={id} books={this.state.books}/>}/>
+                        render={() => <ListBooks books={this.state.books}/>}/>
                 </div>
 
             </div>

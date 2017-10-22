@@ -3,9 +3,13 @@ import PropTypes from 'prop-types'
 import Books from './Books'
 
 class Bookshelf extends Component {
-
+  constructor(props) {
+    super(props);
+  }
   static propTypes = {
-    books: PropTypes.array.isRequired
+    books: PropTypes.array.isRequired,
+    updatebook: PropTypes.func.isRequired
+    
   }
 
   render() {
@@ -29,7 +33,7 @@ class Bookshelf extends Component {
         .books
         .filter((currentbook) => currentbook.shelf === bookshelftype.type)
 
-      return (<Books selectedbooks={filterbooks} title={bookshelftype.title}/>)
+      return (<Books selectedbooks={filterbooks} title={bookshelftype.title} updatebook={this.props.updatebook}/>)
     }))
 
   }

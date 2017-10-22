@@ -5,19 +5,12 @@ import * as BooksAPI from './BooksAPI'
 import Author from './Author'
 
 class Book extends Component {
-    static propTypes = {
-        book: PropTypes.object.isRequired
+    constructor(props) {
+        super(props);
     }
-
-    updatebook(book, shelf) {
-        BooksAPI
-            .update(book, shelf)
-            .then(book => {
-
-                this.setState({book: book})
-
-            })
-            
+    static propTypes = {
+        book: PropTypes.object.isRequired,
+        updatebook: PropTypes.func.isRequired
     }
 
     render() {
@@ -33,11 +26,13 @@ class Book extends Component {
                             height: 193,
                             backgroundImage: `url(${this.props.book.imageLinks.thumbnail})`
                         }}></div>
-                        <Shelf                            
+                        <Shelf
                             key={this.props.book.id}
                             shelf={this.props.book.shelf}
                             onChangeShelf={(value) => {
-                            this.updatebook(this.props.book, value)
+                            this
+                                .props
+                                .updatebook(this.props.book, value)
                         }}/>
                     </div>
                     <div className="book-title">{this.props.book.title}</div>

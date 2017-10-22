@@ -3,9 +3,14 @@ import PropTypes from 'prop-types'
 import Book from './Book'
 
 class Books extends Component {
+    constructor(props) {
+        super(props);
+      }    
     static propTypes = {
         selectedbooks: PropTypes.array.isRequired,
-        title: PropTypes.string.isRequired
+        title: PropTypes.string.isRequired,
+        updatebook: PropTypes.func.isRequired
+        
     }
 
     render() {
@@ -20,7 +25,7 @@ class Books extends Component {
                                 {this
                                     .props
                                     .selectedbooks
-                                    .map((book) => (<Book key={book.id} book={book}/>))}
+                                    .map((book) => (<Book key={book.id} book={book} updatebook={this.props.updatebook}/>))}
                             </ol>
                         </div>
                     </div>
