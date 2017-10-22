@@ -28,7 +28,4 @@ These instructions will get you a copy of the project up and running on your loc
 * Note:
 The selection of shelves retains the state on browser refresh. So on the search page, on a change of state and return to main list page - you would have to refresh the browser to see the updated state
 
-## Author
----
-Swapna Varma
 
