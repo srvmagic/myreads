@@ -3,14 +3,12 @@ import PropTypes from 'prop-types'
 import Book from './Book'
 
 class Books extends Component {
-    constructor(props) {
-        super(props);
-      }    
+
     static propTypes = {
         selectedbooks: PropTypes.array.isRequired,
         title: PropTypes.string.isRequired,
         updatebook: PropTypes.func.isRequired
-        
+
     }
 
     render() {

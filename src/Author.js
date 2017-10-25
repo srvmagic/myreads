@@ -10,7 +10,8 @@ class Book extends Component {
         return (
 
             <span className="book-authors">
-                {this.props.author} &nbsp;
+                {this.props.author}
+                &nbsp;
             </span>
 
         )

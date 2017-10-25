@@ -2,11 +2,10 @@ import React, {Component} from 'react'
 import PropTypes from 'prop-types'
 
 class Shelf extends Component {
-    constructor(props) {
-        super(props);
-    }    
+   
     static propTypes = {
-        shelf: PropTypes.string.isRequired
+        shelf: PropTypes.string.isRequired,
+        
     }
   
     handleChange = (evt) => {
