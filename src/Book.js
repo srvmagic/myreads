@@ -5,10 +5,11 @@ import Shelf from './Shelf'
 class Book extends Component {
     static propTypes = {
         book: PropTypes.object.isRequired,
-        updatebook: PropTypes.func.isRequired
+        updatebook: PropTypes.func.isRequired,
+        getbookshelf: PropTypes.func.isRequired,
     }
-    render() {
 
+    render() {
         return (
 
             <li>
@@ -22,7 +23,8 @@ class Book extends Component {
                             backgroundImage: `url(${this.props.book.imageLinks.thumbnail})`
                         }}></div>
                         <Shelf
-                            shelf={this.props.book.shelf}
+                            book={this.props.book}
+                            default={this.props.getbookshelf(this.props.book.id)}
                             onChangeShelf={(value) => {
                             this
                                 .props

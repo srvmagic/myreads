@@ -6,7 +6,8 @@ import * as BooksAPI from './BooksAPI'
 
 class ListBooks extends Component {
   static propTypes = {
-    updatebook: PropTypes.func.isRequired
+    updatebook: PropTypes.func.isRequired,
+    getbookshelf: PropTypes.func.isRequired
     
   }
   state = {
@@ -57,7 +58,7 @@ class ListBooks extends Component {
               onChange={(event) => this.updateQuery(event.target.value)}/>
 
             <ol className='books-grid'>
-              {results.map((book) => (<Book book={book} updatebook={this.props.updatebook}/>))}
+              {results.map((book) => (<Book book={book} updatebook={this.props.updatebook} getbookshelf={this.props.getbookshelf}/>))}
             </ol>
 
           </div>

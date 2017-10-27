@@ -10,6 +10,8 @@ class App extends React.Component {
     super(props)
     this.state = {books: []}
     this.updatebook = this.updatebook.bind(this)
+    this.getbookshelf = this.getbookshelf.bind(this)
+    
   }
 
   componentDidMount () {
@@ -36,7 +38,23 @@ class App extends React.Component {
       })
     }
   }
+
+  getbookshelf (id) {
+    this.state.books.map((book) => {
+      if(id === book.id){
+        console.log(book.title + " is on shelf "+book.shelf)
+        return book.shelf
+      }
+      else{
+        console.log(book.title + " is on shelf none")
+        
+        return 'none'
+      }
+    })
+  }
+
   render () {
+    console.log(this.state.books)
     return (
       <div className='app'>
         <div className='list-books'>
@@ -44,11 +62,11 @@ class App extends React.Component {
                                                  <div className='list-books-title'>
                                                    <h1>MyReads</h1>
                                                  </div>
-                                                 <Bookshelf books={this.state.books} updatebook={this.updatebook} />
+                                                 <Bookshelf books={this.state.books} updatebook={this.updatebook} getbookshelf={this.getbookshelf}/>
                                                  <Link to='/search' className='open-search'> Add Book
                                                  </Link>
                                                </div>} />
-          <Route exact path='/search' render={() => <ListBooks updatebook={this.updatebook} />} />
+          <Route exact path='/search' render={() => <ListBooks updatebook={this.updatebook} getbookshelf={this.getbookshelf}/>} />
         </div>
       </div>
 

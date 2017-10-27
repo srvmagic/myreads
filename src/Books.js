@@ -7,8 +7,9 @@ class Books extends Component {
     static propTypes = {
         selectedbooks: PropTypes.array.isRequired,
         title: PropTypes.string.isRequired,
-        updatebook: PropTypes.func.isRequired
-
+        updatebook: PropTypes.func.isRequired,
+        getbookshelf: PropTypes.func.isRequired
+        
     }
 
     render() {
@@ -23,7 +24,8 @@ class Books extends Component {
                                 {this
                                     .props
                                     .selectedbooks
-                                    .map((book) => (<Book book={book} updatebook={this.props.updatebook}/>))}
+                                    .map((book) => 
+                                    (<Book book={book} updatebook={this.props.updatebook} getbookshelf={this.props.getbookshelf}/>))}
                             </ol>
                         </div>
                     </div>
