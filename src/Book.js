@@ -6,10 +6,12 @@ class Book extends Component {
     static propTypes = {
         book: PropTypes.object.isRequired,
         updatebook: PropTypes.func.isRequired,
-        getbookshelf: PropTypes.func.isRequired,
+        defaultshelf: PropTypes.string.isRequired
+        
     }
 
     render() {
+        console.log(`${this.props.defaultshelf} for book ${this.props.book.title}`)
         return (
 
             <li>
@@ -23,8 +25,7 @@ class Book extends Component {
                             backgroundImage: `url(${this.props.book.imageLinks.thumbnail})`
                         }}></div>
                         <Shelf
-                            book={this.props.book}
-                            default={this.props.getbookshelf(this.props.book.id)}
+                            defaults={this.props.defaultshelf}
                             onChangeShelf={(value) => {
                             this
                                 .props

@@ -4,9 +4,9 @@ import Books from './Books'
 
 class Bookshelf extends Component {
   static propTypes = {
-    books: PropTypes.array.isRequired,
     updatebook: PropTypes.func.isRequired,
-    getbookshelf: PropTypes.func.isRequired
+    findbook: PropTypes.func.isRequired,
+    
   }
 
   render() {
@@ -33,7 +33,8 @@ class Bookshelf extends Component {
       return (<Books
         selectedbooks={filterbooks}
         title={bookshelftype.title}
-        updatebook={this.props.updatebook} getbookshelf={this.props.getbookshelf}/>)
+        findbook={this.props.findbook}
+        updatebook={this.props.updatebook} />)
     }))
 
   }

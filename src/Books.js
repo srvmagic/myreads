@@ -8,7 +8,7 @@ class Books extends Component {
         selectedbooks: PropTypes.array.isRequired,
         title: PropTypes.string.isRequired,
         updatebook: PropTypes.func.isRequired,
-        getbookshelf: PropTypes.func.isRequired
+        findbook: PropTypes.func.isRequired,
         
     }
 
@@ -25,7 +25,7 @@ class Books extends Component {
                                     .props
                                     .selectedbooks
                                     .map((book) => 
-                                    (<Book book={book} updatebook={this.props.updatebook} getbookshelf={this.props.getbookshelf}/>))}
+                                    (<Book defaultshelf={this.props.findbook(book.id)} book={book} updatebook={this.props.updatebook} />))}
                             </ol>
                         </div>
                     </div>
